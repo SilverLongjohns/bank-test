@@ -12,7 +12,7 @@ describe Account do
     allow(balance).to receive(:statement).and_return([{ deposit: 50 }])
     allow(balance).to receive(:total).and_return([50])
     allow(balance).to receive(:total_balance).and_return([50])
-    expect(subject.print_statement).to eq(
+    expect(subject.view_statement).to eq(
       "date || credit || debit || balance
 08/09/2020 || 50.00 ||  || 50.00"
     )
@@ -23,7 +23,7 @@ describe Account do
     allow(balance).to receive(:statement).and_return([{ deposit: 50 }, { withdrawal: 10 }])
     allow(balance).to receive(:total).and_return([40])
     allow(balance).to receive(:total_balance).and_return([50, 40])
-    expect(subject.print_statement).to eq(
+    expect(subject.view_statement).to eq(
       "date || credit || debit || balance
 08/09/2020 || 50.00 ||  || 50.00
 08/09/2020 ||  || 10.00 || 40.00"

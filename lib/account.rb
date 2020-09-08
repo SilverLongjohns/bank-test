@@ -16,7 +16,7 @@ class Account
     @balance.withdraw(num)
   end
 
-  def print_statement
+  def view_statement
     total
     output = ['date || credit || debit || balance']
     @balance.statement.each do |x|
