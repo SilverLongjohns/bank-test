@@ -1,4 +1,6 @@
-require "date"
+# frozen_string_literal: true
+
+require 'date'
 
 class Balance
   attr_reader :total_balance, :statement, :dates
@@ -10,17 +12,17 @@ class Balance
 
   def deposit(num)
     transaction = {}
-    
+
     transaction[:deposit] = num
     @statement << transaction
-    @dates << DateTime.now.strftime("%d/%m/%Y")
+    @dates << DateTime.now.strftime('%d/%m/%Y')
   end
 
   def withdraw(num)
     transaction = {}
     transaction[:withdrawal] = num
     @statement << transaction
-    @dates << DateTime.now.strftime("%d/%m/%Y")
+    @dates << DateTime.now.strftime('%d/%m/%Y')
   end
 
   def total
@@ -33,6 +35,6 @@ class Balance
       end
       @total_balance << current
     end
-    return current
+    current
   end
 end

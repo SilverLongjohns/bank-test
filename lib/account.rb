@@ -1,4 +1,6 @@
-require_relative "balance.rb"
+# frozen_string_literal: true
+
+require_relative 'balance.rb'
 
 class Account
   attr_reader :balance
@@ -15,8 +17,8 @@ class Account
   end
 
   def print_statement
-    @balance.total
-    output = ["date || credit || debit || balance"]
+    total
+    output = ['date || credit || debit || balance']
     @balance.statement.each do |x|
       xindex = @balance.statement.find_index(x)
       if x[:deposit]
@@ -26,5 +28,11 @@ class Account
       end
     end
     output.join("\n")
+  end
+
+  private
+
+  def total
+    @balance.total
   end
 end
