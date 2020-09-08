@@ -1,11 +1,38 @@
+require "date"
+
 class Balance
-  attr_reader :balance
+  attr_reader :total_balance, :statement, :dates
   def initialize
-    @balance = 0.00
+    @statement = []
+    @total_balance = []
+    @dates = []
   end
 
   def deposit(num)
-    @balance += num
+    transaction = {}
+    
+    transaction[:deposit] = num
+    @statement << transaction
+    @dates << DateTime.now.strftime("%d/%m/%Y")
   end
 
+  def withdraw(num)
+    transaction = {}
+    transaction[:withdrawal] = num
+    @statement << transaction
+    @dates << DateTime.now.strftime("%d/%m/%Y")
+  end
+
+  def total
+    current = 0
+    @statement.each do |x|
+      if x[:deposit]
+        current += x[:deposit]
+      else
+        current -= x[:withdrawal]
+      end
+      @total_balance << current
+    end
+    return current
+  end
 end

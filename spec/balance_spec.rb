@@ -6,6 +6,12 @@ describe Balance do
 
   it "should be able to save a deposit" do
     subject.deposit(300)
-    expect(subject.balance).to eq(300.00)
+    expect(subject.total).to eq(300.00)
+  end
+
+  it "should be able to save a withdrawal" do
+    subject.deposit(300)
+    subject.withdraw(100)
+    expect(subject.total).to eq(200.00)
   end
 end
