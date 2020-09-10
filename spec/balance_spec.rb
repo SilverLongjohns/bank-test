@@ -3,16 +3,13 @@
 require 'balance.rb'
 
 describe Balance do
-  subject { described_class.new }
+  let(:account) { double :account }
 
-  it 'should be able to save a deposit' do
-    subject.deposit(300)
-    expect(subject.total).to eq(300.00)
-  end
+  subject { described_class.new(account) }
 
-  it 'should be able to save a withdrawal' do
-    subject.deposit(300)
-    subject.withdraw(100)
-    expect(subject.total).to eq(200.00)
+  it 'should be able to draw up a total' do
+    allow(account).to receive(:statement).and_return([{ deposit: 50 }, { withdrawal: 10 }])
+
+    expect(subject.total).to eq(40)
   end
 end

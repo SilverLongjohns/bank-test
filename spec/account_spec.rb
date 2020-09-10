@@ -3,30 +3,16 @@
 require 'account.rb'
 
 describe Account do
-  let(:balance) { double :balance }
 
-  subject { described_class.new(balance) }
+  subject { described_class.new }
 
-  it 'should be able to print a statement' do
-    allow(balance).to receive(:dates).and_return(['08/09/2020'])
-    allow(balance).to receive(:statement).and_return([{ deposit: 50 }])
-    allow(balance).to receive(:total).and_return([50])
-    allow(balance).to receive(:total_balance).and_return([50])
-    expect(subject.view_statement).to eq(
-      "date || credit || debit || balance
-08/09/2020 || 50.00 ||  || 50.00"
-    )
+  it "should be able to make a deposit" do
+    subject.deposit(40)
+    expect(subject.statement).to eq([{:deposit => 40}])
   end
 
-  it 'should print a statement with withdrawals and deposits' do
-    allow(balance).to receive(:dates).and_return(['08/09/2020', '08/09/2020'])
-    allow(balance).to receive(:statement).and_return([{ deposit: 50 }, { withdrawal: 10 }])
-    allow(balance).to receive(:total).and_return([40])
-    allow(balance).to receive(:total_balance).and_return([50, 40])
-    expect(subject.view_statement).to eq(
-      "date || credit || debit || balance
-08/09/2020 || 50.00 ||  || 50.00
-08/09/2020 ||  || 10.00 || 40.00"
-    )
+  it "should be able to make a withdrawal" do
+    subject.withdraw(10)
+    expect(subject.statement).to eq([{:withdrawal => 10}])
   end
 end
