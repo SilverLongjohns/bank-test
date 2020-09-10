@@ -16,12 +16,36 @@ To run the code linter, run the rubocop command.
 
 Running the program:
 
-In order to instantiate a new Account and its Balance dependency, run <your account name> = Account.new(Balance.new)
+In order to run the account manager, begin by instantiating an Account class that will handle deposits and withdrawals: account = Account.new
 
-From here, you may deposit (<your account name>.deposit(<amount>)), withdraw (<your account name>.withdraw(<amount>)), and view your statement (<your account name>.view_statement).
+Next, instantiate a Balance class with your Account class as its argument. This Balance class will generate a transaction history for you. balance = Balance.new(account)
+
+Finally, instantiate a Statement class with the Balance class and then the Account class as its arguments. This will allow you to generate a readable statement that will sum up your transaction history.
+
+In order to make a deposit:
+
+account.deposit(AMOUNT)
+
+In order to make a withdrawal:
+
+account.withdraw(AMOUNT)
+
+In order to total your current balance:
+
+balance.total
+
+In order to print your statement:
+
+statement.print
+
+Below is an example of the manager in action:
+
+
 
 ## Approach
 
-During this exercise I wanted to make my classes as independent as possible, while making room for a dependency injection in the Account class. By using the Account as a controller and a printer, I was able to leave all the tracking and calculations in the Balance class.
+In order to ensure complete separation of concerns, 3 classes were used. The Account tackled the most basic day-to-day usage of the account: Despositing and Withdrawing money. It was therefore the most granular and low-level class.
 
-A private method of "total" was used in the Account class in order to enable a running total as the user deposited money through the Account interface.
+The Balance class would be used a little less often, as it would total up the grand sum of money in the account.
+
+Finally, the statement would only be used when the user wanted an easy to read output summarizing all of their interactions with their account. It would therefore be the most high-level class.
