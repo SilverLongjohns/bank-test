@@ -14,7 +14,7 @@ In order to run the rspec tests included in the project, enter the rspec command
 
 To run the code linter, run the rubocop command.
 
-Running the program:
+## Running the program:
 
 In order to run the account manager, begin by instantiating an Account class that will handle deposits and withdrawals: account = Account.new
 
