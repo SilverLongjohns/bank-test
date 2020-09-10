@@ -40,7 +40,7 @@ statement.print
 
 Below is an example of the manager in action:
 
-
+![user journey](https://user-images.githubusercontent.com/57640130/92747085-c2073280-f37b-11ea-934c-f4c0c878d069.png)
 
 ## Approach
 
